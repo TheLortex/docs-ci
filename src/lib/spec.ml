@@ -38,6 +38,8 @@ let add_rsync_retry_script =
      /usr/local/bin/rsync && ls -l /usr/bin/rsync && cat /usr/local/bin/rsync"
     rsync_retry_script
 
+let network = [ "host" ]
+
 let make base =
   let open Obuilder_spec in
   {
@@ -45,6 +47,8 @@ let make base =
     ops =
       [
         user_unix ~uid:1000 ~gid:1000;
+        run ~network
+          "sudo ln -f /usr/bin/opam-2.3 /usr/bin/opam && opam init --reinit -ni";
         workdir "/home/opam";
         run "sudo chown opam:opam /home/opam";
       ];

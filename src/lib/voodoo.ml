@@ -180,7 +180,7 @@ module Prep = struct
          [
            run ~network
              "sudo apt-get update && sudo apt-get install -yy m4 pkg-config";
-           run ~network ~cache "opam pin -ny %s  && opam depext -iy voodoo-prep"
+           run ~network ~cache "opam pin -ny %s  && opam install -y voodoo-prep"
              (remote_uri t);
            run "cp $(opam config var bin)/voodoo-prep /home/opam";
          ]
@@ -203,7 +203,7 @@ module Do = struct
     |> Spec.add
          [
            run ~network "sudo apt-get update && sudo apt-get install -yy m4";
-           run ~network ~cache "opam pin -ny %s && opam depext -iy voodoo-do"
+           run ~network ~cache "opam pin -ny %s && opam install -y voodoo-do"
              (remote_uri t.commit);
            run
              "cp $(opam config var bin)/odoc $(opam config var bin)/voodoo-do \
@@ -226,7 +226,7 @@ module Gen = struct
     |> Spec.add
          [
            run ~network "sudo apt-get update && sudo apt-get install -yy m4";
-           run ~network ~cache "opam pin -ny %s  && opam depext -iy voodoo-gen"
+           run ~network ~cache "opam pin -ny %s  && opam install -y voodoo-gen"
              (remote_uri t.commit);
            run
              "cp $(opam config var bin)/odoc $(opam config var bin)/voodoo-gen \
