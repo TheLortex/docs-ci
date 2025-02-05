@@ -42,7 +42,7 @@
   (git-unix (>= 3.13.0))
   conf-libev
   dune-build-info
-  (ocaml-version (>= 3.6.5))
+  (ocaml-version (= 3.6.5))
   (obuilder-spec (>= 0.5.1))
   (ocolor (>= 1.3.0))
   (memtrace (>= 0.1.1)) ; required for memory profiling
