@@ -29,7 +29,7 @@ let filter_deps t pkg f =
   f
   |> OpamFilter.partial_filter_formula (env t pkg)
   |> OpamFilter.filter_deps ~build:true ~post:true ~test ~doc:false ~dev
-       ~default:false
+       ~dev_setup:false ~default:false
 
 let candidates t name =
   match OpamPackage.Name.Map.find_opt name t.pins with

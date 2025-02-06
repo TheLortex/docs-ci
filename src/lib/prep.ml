@@ -101,9 +101,9 @@ let spec ~ssh ~voodoo ~base ~(install : Package.t) (prep : Package.t list) =
          run "sudo mkdir /src";
          copy [ "packages" ] ~dst:"/src/packages";
          copy [ "repo" ] ~dst:"/src/repo";
-         (* Re-initialise opam after switching from opam.2.0 to 2.1. *)
+         (* Re-initialise opam after switching from opam.2.0 to 2.3. *)
          run ~network
-           "sudo ln -f /usr/bin/opam-2.1 /usr/bin/opam && opam init --reinit \
+           "sudo ln -f /usr/bin/opam-2.3 /usr/bin/opam && opam init --reinit \
             -ni";
          run "opam repo remove default && opam repo add opam /src";
          copy ~from:(`Build "tools")
@@ -121,7 +121,7 @@ let spec ~ssh ~voodoo ~base ~(install : Package.t) (prep : Package.t list) =
               [
                 "sudo apt update";
                 Fmt.str
-                  "(opam depext -viy %s 2>&1 | tee ~/opam.err.log) || echo \
+                  "(opam install -y %s 2>&1 | tee ~/opam.err.log) || echo \
                    'Failed to install all packages'"
                   packages_str;
               ];
