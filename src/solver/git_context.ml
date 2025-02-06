@@ -28,8 +28,8 @@ let filter_deps t pkg f =
   let test = OpamPackage.Name.Set.mem (OpamPackage.name pkg) t.test in
   f
   |> OpamFilter.partial_filter_formula (env t pkg)
-  |> OpamFilter.filter_deps ~build:true ~post:true ~test ~doc:false ~dev ~dev_setup:false
-       ~default:false
+  |> OpamFilter.filter_deps ~build:true ~post:true ~test ~doc:false ~dev
+       ~dev_setup:false ~default:false
 
 let candidates t name =
   match OpamPackage.Name.Map.find_opt name t.pins with
